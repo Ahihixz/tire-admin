@@ -1,58 +1,245 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tire Management Dashboard
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem manajemen ban berbasis Laravel untuk memantau kondisi ban, riwayat pemasangan, umur pakai, dan data kendaraan secara terpusat.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Dashboard KPI
+* Monitoring Ban Aktif
+* Monitoring Ban Scrap
+* Lifetime Ban Tracking
+* Riwayat Pemasangan Ban
+* Manajemen Data Ban
+* Manajemen Kendaraan
+* Responsive Dashboard
+* Docker Support
+* MySQL/MariaDB Database
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠 Tech Stack
 
-## Learning Laravel
+* Laravel 12
+* PHP 8.3+
+* MySQL / MariaDB
+* Docker & Docker Compose
+* Tailwind CSS
+* Blade Template Engine
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📋 Requirements
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Pastikan software berikut sudah terinstall:
 
-## Agentic Development
+* Docker
+* Docker Compose
+* Git
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Cek versi:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+docker --version
+docker compose version
+git --version
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 📦 Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Clone repository:
 
-## Code of Conduct
+```bash
+git clone https://github.com/YOUR_USERNAME/tire-admin.git
+cd tire-admin
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copy file environment:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Generate application key:
 
-## License
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ⚙️ Database Configuration
+
+Sesuaikan konfigurasi database pada file `.env`.
+
+Contoh:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=host.docker.internal
+DB_PORT=3306
+DB_DATABASE=tire_management
+DB_USERNAME=laravel
+DB_PASSWORD=password123
+```
+
+> Sesuaikan dengan konfigurasi database yang digunakan.
+
+---
+
+## 🐳 Run Using Docker
+
+Build dan jalankan container:
+
+```bash
+docker compose up -d --build
+```
+
+Cek container:
+
+```bash
+docker ps
+```
+
+Pastikan container `tire-dashboard` berstatus **Up**.
+
+---
+
+## 🗄 Database Migration
+
+Masuk ke container:
+
+```bash
+docker exec -it tire-dashboard bash
+```
+
+Jalankan migration:
+
+```bash
+php artisan migrate
+```
+
+Jika tersedia seeder:
+
+```bash
+php artisan db:seed
+```
+
+Atau:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+⚠️ Perintah `migrate:fresh` akan menghapus seluruh data database.
+
+---
+
+## 🌐 Access Application
+
+Buka browser:
+
+```text
+http://localhost:8000
+```
+
+Akses dari perangkat lain dalam jaringan:
+
+```text
+http://IP-LAPTOP:8000
+```
+
+Contoh:
+
+```text
+http://192.168.1.10:8000
+```
+
+---
+
+## 📱 Responsive Design
+
+Dashboard dirancang agar dapat digunakan pada:
+
+* Desktop
+* Laptop
+* Tablet
+* Smartphone
+
+---
+
+## 🔧 Useful Commands
+
+Restart container:
+
+```bash
+docker compose restart
+```
+
+Stop container:
+
+```bash
+docker compose down
+```
+
+Melihat log:
+
+```bash
+docker logs tire-dashboard
+```
+
+Masuk ke container:
+
+```bash
+docker exec -it tire-dashboard bash
+```
+
+Clear cache Laravel:
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+app/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+storage/
+tests/
+Dockerfile
+docker-compose.yml
+README.md
+```
+
+---
+
+## 🔒 Security Notes
+
+* Jangan commit file `.env`
+* Jangan simpan password database di repository publik
+* Gunakan `.env.example` untuk konfigurasi contoh
+
+---
+
+## 👨‍💻 Author
+
+Developed by Mas
+
+Tire Management Dashboard Project
+Built with Laravel & Docker
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+.
