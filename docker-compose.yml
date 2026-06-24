@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: tire-dashboard
+
+    ports:
+      - "8000:80"
+
+    env_file:
+      - .env
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
