@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Suppliers</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Lifetime Ban</h2>
     </x-slot>
 
     <div class="py-8">
@@ -40,10 +40,10 @@
 
             <div class="mb-6 flex items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                 <div>
-                    <h3 class="text-xl font-semibold text-slate-900">Supplier Directory</h3>
-                    <p class="mt-1 text-sm text-slate-500">Manage your supplier contacts.</p>
+                    <h3 class="text-xl font-semibold text-slate-900">Lifetime Ban Directory</h3>
+                    <p class="mt-1 text-sm text-slate-500">Manage your lifetime ban records.</p>
                 </div>
-                <a href="{{ route('suppliers.create') }}" class="rounded-2xl bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">Add Supplier</a>
+                <a href="{{ route('suppliers.create') }}" class="rounded-2xl bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700">Add Lifetime Ban</a>
             </div>
 
             <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
@@ -68,7 +68,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-10 text-center text-sm text-slate-500">No suppliers found. Add a supplier to get started.</td>
+                                <td colspan="5" class="px-6 py-10 text-center text-sm text-slate-500">No lifetime ban records found. Add a lifetime ban to get started.</td>
                             </tr>
                         @endforelse
                     </tbody>

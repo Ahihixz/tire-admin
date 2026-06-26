@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TireController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\LifetimeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('vehicles', VehicleController::class);
     Route::resource('suppliers', SupplierController::class);
     Route::resource('maintenances', MaintenanceController::class);
+    Route::resource('lifetimes', LifetimeController::class)->only(['index', 'show', 'update']);
 
     Route::view('/inventory', 'placeholder', ['title' => 'Inventory', 'subtitle' => 'Inventory data is coming soon.'])->name('inventory');
     Route::view('/transactions', 'placeholder', ['title' => 'Transactions', 'subtitle' => 'Transactions data is coming soon.'])->name('transactions');
