@@ -21,7 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('vehicles', VehicleController::class);
     Route::resource('suppliers', SupplierController::class);
     Route::resource('maintenances', MaintenanceController::class);
-    Route::resource('lifetimes', LifetimeController::class)->only(['index', 'show', 'update']);
+    Route::resource('lifetimes', LifetimeController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
 
     Route::view('/inventory', 'placeholder', ['title' => 'Inventory', 'subtitle' => 'Inventory data is coming soon.'])->name('inventory');
     Route::view('/transactions', 'placeholder', ['title' => 'Transactions', 'subtitle' => 'Transactions data is coming soon.'])->name('transactions');

@@ -60,8 +60,8 @@
         </aside>
 
         <div class="flex-1 flex flex-col bg-slate-50">
-            <div class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm flex items-center justify-between gap-4 sm:px-8">
-                <div class="flex items-center gap-3">
+            <div class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
                     <button type="button" @click="sidebarOpen = !sidebarOpen" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-2 text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -71,11 +71,12 @@
                         <p class="text-xs text-slate-400 mb-1"><a href="#" class="hover:text-slate-600">Home</a> / <span class="text-slate-600">Dashboard</span></p>
                         <h2 class="text-2xl font-bold text-slate-900">Dashboard</h2>
                     </div>
+                    
                 </div>
-                <div class="flex items-center gap-4">
-                    <label class="relative block">
+                <div class="hidden sm:flex flex-row items-center gap-4">
+                    <label class="relative block w-full sm:w-auto">
                         <span class="sr-only">Search</span>
-                        <input class="rounded-2xl border border-slate-200 bg-slate-50 py-2 pl-10 pr-4 text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" placeholder="Search tire, vehicle, supplier" />
+                        <input class="w-full rounded-2xl border border-slate-200 bg-slate-50 py-2 pl-10 pr-4 text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100" placeholder="Search tire, vehicle, supplier" />
                         <span class="pointer-events-none absolute inset-y-0 left-3 inline-flex items-center text-slate-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4"><path fill="currentColor" d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm11.71 17.29-4.82-4.82A8 8 0 1 0 12 20a7.94 7.94 0 0 0 5.48-2.08l4.82 4.82a1 1 0 0 0 1.42-1.42Z"/></svg>
                         </span>
@@ -259,6 +260,10 @@
                                 <a href="{{ route('suppliers.create') }}" class="inline-flex items-center justify-between rounded-lg bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg>
                                     <span>Add Supplier</span>
+                                </a>
+                                <a href="{{ route('lifetimes.create') }}" style="background-color:#7c3aed;color:#ffffff;" class="inline-flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg>
+                                    <span>Tambah Lifetime</span>
                                 </a>
                                 <a href="{{ route('maintenances.create') }}" class="inline-flex items-center justify-between rounded-lg bg-red-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-red-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg>

@@ -44,17 +44,19 @@
             #tms-dashboard .flex-1 > div:last-child { flex:1; overflow-y:auto; }
 
             @media (max-width: 767px) {
-                #tms-dashboard { flex-direction: column; }
+                #tms-dashboard { flex-direction: column; min-height:100vh; }
                 #tms-dashboard aside {
                     position: fixed;
                     top: 0;
                     left: 0;
-                    width: 260px;
+                    width: 100vw;
+                    max-width: 100vw;
                     min-width: unset;
                     height: 100vh;
                     box-shadow: 8px 0 30px rgba(15,23,41,0.35);
                 }
                 #tms-dashboard .flex-1 { min-height: 100vh; }
+                #tms-dashboard .flex-1 > div:last-child { min-height: calc(100vh - 72px); }
             }
             
             /* Cards */

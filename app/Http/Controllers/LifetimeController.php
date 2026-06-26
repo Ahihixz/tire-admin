@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lifetime;
+use App\Models\Tire;
 use Illuminate\Http\Request;
 
 class LifetimeController extends Controller
@@ -18,35 +19,109 @@ class LifetimeController extends Controller
     }
 
     /**
+     * Tampilkan form pembuatan lifetime baru
+     */
+    public function create()
+    {
+        $tires = Tire::orderBy('tire_code')->get();
+
+        return view('lifetime.create', compact('tires'));
+    }
+
+    /**
+     * Simpan data lifetime baru
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'tire_id' => 'required|exists:tires,id',
+            'hm_install' => 'required|numeric|min:0',
+            'hm_current' => 'required|numeric|min:0',
+            'km_install' => 'nullable|numeric|min:0',
+            'km_current' => 'nullable|numeric|min:0',
+            'max_lifetime_hm' => 'nullable|numeric|min:1',
+            'max_lifetime_km' => 'nullable|numeric|min:1',
+            'average_hm_per_day' => 'nullable|numeric|min:0',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+
+        Lifetime::create([
+            'tire_id' => $request->tire_id,
+            'hm_install' => $request->hm_install,
+            'hm_current' => $request->hm_current,
+            'km_install' => $request->km_install ?? 0,
+            'km_current' => $request->km_current ?? 0,
+            'max_lifetime_hm' => $request->max_lifetime_hm ?? 10000,
+            'max_lifetime_km' => $request->max_lifetime_km ?? 300000,
+            'average_hm_per_day' => $request->average_hm_per_day ?? 0,
+            'notes' => $request->notes,
+        ]);
+
+        return redirect()->route('lifetimes.index')->with('success', 'Lifetime record berhasil ditambahkan.');
+    }
+
+    /**
      * Detail lifetime satu ban
      */
-    public function show($id)
+    public function show(Lifetime $lifetime)
     {
-        $lifetime = Lifetime::with('tire')->findOrFail($id);
+        $lifetime->load('tire');
 
         return view('lifetime.show', compact('lifetime'));
     }
 
     /**
-     * Update HM dan KM ban
+     * Tampilkan form edit lifetime
      */
-    public function update(Request $request, $id)
+    public function edit(Lifetime $lifetime)
+    {
+        $lifetime->load('tire');
+
+        return view('lifetime.show', compact('lifetime'));
+    }
+
+    /**
+     * Update data lifetime
+     */
+    public function update(Request $request, Lifetime $lifetime)
     {
         $request->validate([
+            'hm_install' => 'required|numeric|min:0',
             'hm_current' => 'required|numeric|min:0',
-            'km_current' => 'required|numeric|min:0',
+            'km_install' => 'nullable|numeric|min:0',
+            'km_current' => 'nullable|numeric|min:0',
+            'max_lifetime_hm' => 'nullable|numeric|min:1',
+            'max_lifetime_km' => 'nullable|numeric|min:1',
+            'average_hm_per_day' => 'nullable|numeric|min:0',
+            'notes' => 'nullable|string|max:1000',
         ]);
 
-        $lifetime = Lifetime::findOrFail($id);
-
         $lifetime->update([
+            'hm_install' => $request->hm_install,
             'hm_current' => $request->hm_current,
-            'km_current' => $request->km_current,
+            'km_install' => $request->km_install ?? 0,
+            'km_current' => $request->km_current ?? 0,
+            'max_lifetime_hm' => $request->max_lifetime_hm ?? $lifetime->max_lifetime_hm,
+            'max_lifetime_km' => $request->max_lifetime_km ?? $lifetime->max_lifetime_km,
+            'average_hm_per_day' => $request->average_hm_per_day ?? $lifetime->average_hm_per_day,
+            'notes' => $request->notes,
         ]);
 
         return redirect()
             ->route('lifetimes.show', $lifetime)
             ->with('success', 'Lifetime berhasil diperbarui.');
+    }
+
+    /**
+     * Hapus data lifetime
+     */
+    public function destroy(Lifetime $lifetime)
+    {
+        $lifetime->delete();
+
+        return redirect()
+            ->route('lifetimes.index')
+            ->with('success', 'Lifetime record berhasil dihapus.');
     }
 
     /**

@@ -57,7 +57,11 @@
         </label>
     </div>
 
-    <div class="flex items-center justify-end mt-4">
+    <div class="mt-4 flex items-center justify-between">
+        <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('register') }}">
+            {{ __('Create an account') }}
+        </a>
+
         <x-primary-button class="ms-3">
             {{ __('Log in') }}
         </x-primary-button>
