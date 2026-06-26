@@ -22,6 +22,7 @@
             }
 
             * { box-sizing: border-box; }
+            [x-cloak] { display: none !important; }
             html,body{
                 font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
                 background: #f8fafc;
@@ -41,6 +42,20 @@
             }
             #tms-dashboard .flex-1 { flex:1; overflow:hidden; display:flex; flex-direction:column; }
             #tms-dashboard .flex-1 > div:last-child { flex:1; overflow-y:auto; }
+
+            @media (max-width: 767px) {
+                #tms-dashboard { flex-direction: column; }
+                #tms-dashboard aside {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 260px;
+                    min-width: unset;
+                    height: 100vh;
+                    box-shadow: 8px 0 30px rgba(15,23,41,0.35);
+                }
+                #tms-dashboard .flex-1 { min-height: 100vh; }
+            }
             
             /* Cards */
             #tms-dashboard [class*="rounded-[2rem]"]{

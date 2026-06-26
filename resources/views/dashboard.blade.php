@@ -1,6 +1,7 @@
 <x-dashboard-layout>
-    <div id="tms-dashboard">
-        <aside class="bg-slate-900 text-slate-100 border-r border-slate-800">
+    <div id="tms-dashboard" x-data="{ sidebarOpen: false }" class="relative">
+        <div x-show="sidebarOpen" x-cloak x-transition.opacity class="fixed inset-0 z-20 bg-slate-950/40 sm:hidden" @click="sidebarOpen = false"></div>
+        <aside x-cloak @click.outside="sidebarOpen = false" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="bg-slate-900 text-slate-100 border-r border-slate-800 fixed inset-y-0 left-0 z-30 w-64 transform transition-transform duration-200 ease-in-out sm:static sm:translate-x-0 sm:w-auto sm:min-w-[var(--sidebar-width)] sm:block">
             <div class="px-4 py-5 border-b border-slate-700">
                 <div class="flex items-center gap-2">
                     <div class="w-10 h-10 rounded-2xl bg-white/15 flex items-center justify-center text-blue-300 flex-shrink-0">
@@ -58,10 +59,17 @@
         </aside>
 
         <div class="flex-1 flex flex-col bg-slate-50">
-            <div class="border-b border-slate-200 bg-white px-8 py-4 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs text-slate-400 mb-1"><a href="#" class="hover:text-slate-600">Home</a> / <span class="text-slate-600">Dashboard</span></p>
-                    <h2 class="text-2xl font-bold text-slate-900">Dashboard</h2>
+            <div class="border-b border-slate-200 bg-white px-4 py-4 shadow-sm flex items-center justify-between gap-4 sm:px-8">
+                <div class="flex items-center gap-3">
+                    <button type="button" @click="sidebarOpen = !sidebarOpen" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-2 text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div>
+                        <p class="text-xs text-slate-400 mb-1"><a href="#" class="hover:text-slate-600">Home</a> / <span class="text-slate-600">Dashboard</span></p>
+                        <h2 class="text-2xl font-bold text-slate-900">Dashboard</h2>
+                    </div>
                 </div>
                 <div class="flex items-center gap-4">
                     <label class="relative block">
@@ -81,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="flex-1 overflow-y-auto space-y-6 p-8">
+            <div class="flex-1 overflow-y-auto space-y-6 p-4 sm:p-8">
                 <!-- Alerts Section -->
                 @if (session('success'))
                     <x-alert type="success">
