@@ -23,6 +23,7 @@
                         ['label' => 'Tires', 'route' => 'tires.index', 'icon' => 'M5 12h14M12 5v14'],
                         ['label' => 'Vehicles', 'route' => 'vehicles.index', 'icon' => 'M5 16V8h14v8H5zm3-4h2v2H8v-2zm0-4h2v2H8V8zm6 0h2v2h-2V8zm0 4h2v2h-2v-2z'],
                         ['label' => 'Suppliers', 'route' => 'suppliers.index', 'icon' => 'M12 2l7 4v6c0 5-4 9-7 10-3-1-7-5-7-10V6l7-4z'],
+                        ['label' => 'Lifetime', 'route' => 'lifetimes.index', 'icon' => 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z'],
                         ['label' => 'Maintenance', 'route' => 'maintenances.index', 'icon' => 'M12 6v6l4 2'],
                         ['label' => 'Users', 'route' => 'users', 'icon' => 'M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z'],
                         ['label' => 'Alerts', 'route' => 'alerts', 'icon' => 'M12 2a7 7 0 0 1 7 7c0 4 3 5 3 5H2s3-1 3-5a7 7 0 0 1 7-7z'],
