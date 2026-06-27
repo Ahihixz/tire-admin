@@ -1,13 +1,28 @@
+version: "3.9"
+
 services:
   app:
     build: .
     container_name: tire-dashboard
-
     ports:
       - "8000:80"
-
     env_file:
       - .env
-
+    depends_on:
+      - db
     extra_hosts:
       - "host.docker.internal:host-gateway"
+db:
+  image: mysql:8.0
+  container_name: mysql-db
+  restart: unless-stopped
+  environment:
+    MYSQL_ROOT_PASSWORD: rootpassword
+    MYSQL_DATABASE: tire_management
+    MYSQL_USER: laravel
+    MYSQL_PASSWORD: password123
+  volumes:
+    - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
